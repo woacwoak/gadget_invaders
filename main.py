@@ -9,6 +9,7 @@ from ui.menu import show_menu
 from ui.game_over import show_game_over
 from core.boost import Boost
 
+
 #boot
 pygame.init()
 pygame.mixer.init()
