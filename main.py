@@ -10,7 +10,10 @@ from ui.game_over import show_game_over
 from core.boost import Boost
 from ui.restart_button import draw_restart_button
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e778ac1 (Commit comment "#boot")
 #boot
 pygame.init()
 pygame.mixer.init()
