@@ -101,13 +101,12 @@ level_messages = {
     2: "Take short breaks every hour to protect your eyes and mind.",
     3: "Real friends are waiting outside the screen. Go say hi!",
     4: "Every hour offline can be an hour spent learning or creating.",
-    5: "Wait… you’re still here? Why are you playing so much? The game might crash soon!",
+    5: "Talking face-to-face builds stronger friendships than texting.",
     6: "Too much screen time can affect sleep, mood, and focus.",
     7: "You control the game. Don’t let the game control you.",
     8: "Life has no respawn button — make time for real adventures!",
     9: "Too much sitting can harm your health. Get up and move!",
-    10: "Blue light before bed can mess with your sleep. Log off early.",
-    11: "Talking face-to-face builds stronger friendships than texting.",
+    10: "Blue light before bed can mess with your sleep. Log off early."
 }
 
 boss_level_win = False
@@ -205,11 +204,11 @@ while run:
             enemy_bullet_group, boss_bullet_group, explosion_group, boost_group,
             background_surface, stars=stars, blink_spaceship=True, font_size=64
         )
-        level_to_show = current_level
+        # level_to_show = current_level
         current_level += 1
         show_message(
             screen, clock, FPS, score,
-            level_messages[level_to_show], 5000,
+            level_messages[random.randint(1,10)], 5000,
             spaceship_group, bullet_group, enemy_group,
             enemy_bullet_group, boss_bullet_group, explosion_group, boost_group,
             background_surface, stars=stars, font_size=36
