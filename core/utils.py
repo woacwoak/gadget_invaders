@@ -20,7 +20,7 @@ def show_message(
 
     for word in words:
         test_line = (current_line + " " + word).strip()
-        if message_font.size(test_line)[0] < screen_width - 40:  # leave some margin
+        if message_font.size(test_line)[0] < screen_width - 40:
             current_line = test_line
         else:
             lines.append(current_line)

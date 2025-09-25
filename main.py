@@ -102,7 +102,7 @@ level_messages = {
     3: "Real friends are waiting outside the screen. Go say hi!",
     4: "Every hour offline can be an hour spent learning or creating.",
     5: "Talking face-to-face builds stronger friendships than texting.",
-    6: "Too much screen time can affect sleep, mood, and focus.",
+    6: "Too much screen time can affect sleep, mood, and focus."        ,
     7: "You control the game. Don’t let the game control you.",
     8: "Life has no respawn button — make time for real adventures!",
     9: "Too much sitting can harm your health. Get up and move!",
