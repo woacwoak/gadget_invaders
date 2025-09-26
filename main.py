@@ -8,6 +8,7 @@ from core.utils import show_message
 from ui.menu import show_menu
 from ui.game_over import show_game_over
 from core.boost import Boost
+from ui.restart_button import draw_restart_button
 
 
 #boot
@@ -58,6 +59,7 @@ current_level = 1
 #Boss
 boss = None
 
+
 def spawn_boost(boost_group):
     x = random.randint(50, screen_width - 50)
     y = -20
@@ -66,6 +68,8 @@ def spawn_boost(boost_group):
 
 #Show menu before starting
 show_menu(screen, clock, FPS, screen_width, screen_height, background_surface)
+
+
 
 #Show next level
 def show_level_message(level):
@@ -83,6 +87,7 @@ def show_level_message(level):
         blink_spaceship=True,
         font_size=64
     )
+
 
 score = 0
 
@@ -103,6 +108,7 @@ level_messages = {
 }
 
 boss_level_win = False
+victory = False
 
 #Main loop
 run = True
@@ -142,6 +148,7 @@ while run:
     if game_over:
         show_game_over(screen, clock, FPS)
         break
+
 
     if stars.boost_timer:
         if pygame.time.get_ticks() - stars.boost_timer > 3000:
@@ -183,6 +190,9 @@ while run:
         #if Quit Button clicked
         if event.type == pygame.QUIT:
             run = False
+
+
+
 
     if current_level != 3 and len(enemy_group) == 0:
         show_message(
@@ -235,29 +245,15 @@ while run:
                          enemy_bullet_group, boss_bullet_group, explosion_group, boost_group,
                          background_surface, stars=stars, blink_spaceship=True, font_size=64)
 
-            show_message(
-                screen, clock, FPS, score,
-                level_messages[current_level], 5000,
-                spaceship_group, bullet_group, enemy_group,
-                enemy_bullet_group, boss_bullet_group, explosion_group, boost_group,
-                background_surface, stars=stars, font_size=36
-            )
-            show_message(screen, clock, FPS, score, f"Level {current_level}", 2000,
-                         spaceship_group, bullet_group, enemy_group,
-                         enemy_bullet_group, boss_bullet_group, explosion_group, boost_group,
-                         background_surface, stars=stars, blink_spaceship = True ,font_size=64)
-
-            enemy_group = create_enemy_group(current_level)
-            boss = None
+            victory = True
+            break
 
     #Update sprites
-    spaceship.update(screen, bullet_group, stars)
     for bullet in bullet_group:
         gained = bullet.update(enemy_group, boss_group, explosion_group, enemy_bullet_group)
         score += gained
     enemy_group.update()
     enemy_bullet_group.update(spaceship_group, explosion_group, spaceship)
-    boss_bullet_group.update(spaceship_group, explosion_group, spaceship, bullet_group )
     explosion_group.update()
     boost_group.update(spaceship_group, stars)
     for boss_bullet in boss_bullet_group:
@@ -274,5 +270,19 @@ while run:
 
 
     pygame.display.flip()
+
+
+if victory:
+    show_message(
+        screen, clock, FPS, score,
+        "YOU WIN!", 2000,
+        spaceship_group, bullet_group, enemy_group,
+        enemy_bullet_group, boss_bullet_group, explosion_group, boost_group,
+        background_surface, stars=stars, blink_spaceship=True, font_size=64
+    )
+
+    pygame.display.flip()
+
+
 
 pygame.quit()
